@@ -66,7 +66,18 @@ ytdl.getInfo("http://www.youtube.com/watch?v=aqz-KE-bpKQ", { agent });
 - Go to [YouTube](https://www.youtube.com/).
 - Log in to your account. (You should use a new account for this purpose)
 - Click on the extension icon and click "Export" icon.
-- Your cookie will be added to your clipboard and paste it into your code.
+- Your cookies will be added to your clipboard and paste it into your code.
+
+> [!WARNING]
+> Don't logout it by clicking logout button on youtube/google account manager, it will expire your cookies.
+> You can delete your browser's cookies to log it out on your browser.
+> Or use incognito mode to get your cookies then close it.
+
+> [!WARNING]
+> Paste all the cookies array from clipboard into `createAgent` function. Don't remove/edit any cookies if you don't know what you're doing.
+
+> [!WARNING]
+> Make sure your account, which logged in when you getting your cookies, use 1 IP at the same time only. It will make your cookies alive longer.
 
 ```js
 const ytdl = require("@distube/ytdl-core");
@@ -76,18 +87,20 @@ const agent = ytdl.createAgent([
     expirationDate: 1234567890,
     hostOnly: false,
     httpOnly: true,
-    name: "LOGIN_INFO",
+    name: "---xxx---",
     path: "/",
     sameSite: "no_restriction",
     secure: true,
     session: false,
     value: "---xxx---",
   },
-  "...",
+  {
+    "...": "...",
+  },
 ]);
 ```
 
-- Or you can paste it into a file and use `fs.readFileSync` to read it.
+- Or you can paste your cookies array into a file and use `fs.readFileSync` to read it.
 
 ```js
 const ytdl = require("@distube/ytdl-core");
